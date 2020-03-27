@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace SimpleServer
+namespace SimpleServer.Sockets
 {
     public static class SocketAddressFactory
     {
