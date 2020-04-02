@@ -25,7 +25,7 @@ namespace SimpleSocketServerLibrary
             if (typeof(T) == typeof(bool))
             {
                 dataByte = new byte[sizeof(bool)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(bool));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToBoolean(dataByte, 0);
@@ -34,7 +34,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(char))
             {
                 dataByte = new byte[sizeof(char)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(char));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToChar(dataByte, 0);
@@ -53,7 +53,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(short))
             {
                 dataByte = new byte[sizeof(short)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(short));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToInt16(dataByte, 0);
@@ -62,7 +62,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(ushort))
             {
                 dataByte = new byte[sizeof(ushort)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(ushort));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToUInt16(dataByte, 0);
@@ -71,7 +71,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(int))
             {
                 dataByte = new byte[sizeof(int)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(int));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToInt32(dataByte, 0);
@@ -80,7 +80,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(uint))
             {
                 dataByte = new byte[sizeof(uint)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(uint));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToUInt32(dataByte, 0);
@@ -89,7 +89,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(long))
             {
                 dataByte = new byte[sizeof(long)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(long));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToInt64(dataByte, 0);
@@ -98,7 +98,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(ulong))
             {
                 dataByte = new byte[sizeof(ulong)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(ulong));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToUInt64(dataByte, 0);
@@ -107,7 +107,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(float))
             {
                 dataByte = new byte[sizeof(float)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(float));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToSingle(dataByte, 0);
@@ -116,7 +116,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(double))
             {
                 dataByte = new byte[sizeof(double)];
-                dataByte.CopyTo(buffer, head);
+                Array.Copy(buffer, head, dataByte, 0, sizeof(double));
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(dataByte);
                 data = (T)(object)BitConverter.ToDouble(dataByte, 0);
