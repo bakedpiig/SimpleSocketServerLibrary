@@ -36,6 +36,8 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(double)) dataBytes = BitConverter.GetBytes(Convert.ToDouble(data));
             else
                 throw new ArgumentException("OutputMemoryStream.Write parameter can be only primitive type except decimal");
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(dataBytes);
 
             int resultHead = head + dataBytes.Length;
             if(resultHead>capacity)

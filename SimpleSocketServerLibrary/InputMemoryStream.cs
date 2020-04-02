@@ -21,14 +21,23 @@ namespace SimpleSocketServerLibrary
         #region Read
         public void Read<T>(out T data) where T : struct
         {
+            byte[] dataByte;
             if (typeof(T) == typeof(bool))
             {
-                data = (T)(object)BitConverter.ToBoolean(buffer, head);
+                dataByte = new byte[sizeof(bool)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToBoolean(dataByte, 0);
                 head += sizeof(bool);
             }
             else if (typeof(T) == typeof(char))
             {
-                data = (T)(object)BitConverter.ToChar(buffer, head);
+                dataByte = new byte[sizeof(char)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToChar(dataByte, 0);
                 head += sizeof(char);
             }
             else if (typeof(T) == typeof(byte))
@@ -43,42 +52,74 @@ namespace SimpleSocketServerLibrary
             }
             else if (typeof(T) == typeof(short))
             {
-                data = (T)(object)BitConverter.ToInt16(buffer, head);
+                dataByte = new byte[sizeof(short)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToInt16(dataByte, 0);
                 head += sizeof(short);
             }
             else if (typeof(T) == typeof(ushort))
             {
-                data = (T)(object)BitConverter.ToUInt16(buffer, head);
+                dataByte = new byte[sizeof(ushort)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToUInt16(dataByte, 0);
                 head += sizeof(ushort);
             }
             else if (typeof(T) == typeof(int))
             {
-                data = (T)(object)BitConverter.ToInt32(buffer, head);
+                dataByte = new byte[sizeof(int)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToInt32(dataByte, 0);
                 head += sizeof(int);
             }
             else if (typeof(T) == typeof(uint))
             {
-                data = (T)(object)BitConverter.ToUInt32(buffer, head);
+                dataByte = new byte[sizeof(uint)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToUInt32(dataByte, 0);
                 head += sizeof(uint);
             }
             else if (typeof(T) == typeof(long))
             {
-                data = (T)(object)BitConverter.ToInt64(buffer, head);
+                dataByte = new byte[sizeof(long)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToInt64(dataByte, 0);
                 head += sizeof(long);
             }
             else if (typeof(T) == typeof(ulong))
             {
-                data = (T)(object)BitConverter.ToUInt64(buffer, head);
+                dataByte = new byte[sizeof(ulong)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToUInt64(dataByte, 0);
                 head += sizeof(ulong);
             }
             else if (typeof(T) == typeof(float))
             {
-                data = (T)(object)BitConverter.ToSingle(buffer, head);
+                dataByte = new byte[sizeof(float)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToSingle(dataByte, 0);
                 head += sizeof(float);
             }
             else if (typeof(T) == typeof(double))
             {
-                data = (T)(object)BitConverter.ToDouble(buffer, head);
+                dataByte = new byte[sizeof(double)];
+                dataByte.CopyTo(buffer, head);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(dataByte);
+                data = (T)(object)BitConverter.ToDouble(dataByte, 0);
                 head += sizeof(double);
             }
             else
