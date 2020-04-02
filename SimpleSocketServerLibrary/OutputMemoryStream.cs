@@ -23,6 +23,7 @@ namespace SimpleSocketServerLibrary
         {
             byte[] dataBytes;
             if (typeof(T) == typeof(bool)) dataBytes = BitConverter.GetBytes(Convert.ToBoolean(data));
+            else if (typeof(T) == typeof(char)) dataBytes = BitConverter.GetBytes(Convert.ToChar(data));
             else if (typeof(T) == typeof(byte)) dataBytes = BitConverter.GetBytes(Convert.ToByte(data));
             else if (typeof(T) == typeof(sbyte)) dataBytes = BitConverter.GetBytes(Convert.ToSByte(data));
             else if (typeof(T) == typeof(short)) dataBytes = BitConverter.GetBytes(Convert.ToInt16(data));
@@ -46,6 +47,15 @@ namespace SimpleSocketServerLibrary
 
             Array.Copy(dataBytes, 0, buffer, head, dataBytes.Length);
             head = resultHead;
+        }
+
+        public void Write(string data)
+        {
+            Write(data.Length);
+            foreach(var c in data)
+            {
+                Write(c);
+            }
         }
 
         #endregion
