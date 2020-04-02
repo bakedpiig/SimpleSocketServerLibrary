@@ -45,6 +45,7 @@ namespace SimpleSocketServerLibrary
                 byte[] newBuffer = new byte[buffer.Length * 2];
                 newBuffer.CopyTo(newBuffer, 0);
                 buffer = newBuffer;
+                capacity = buffer.Length;
             }
 
             Array.Copy(dataBytes, 0, buffer, head, dataBytes.Length);
