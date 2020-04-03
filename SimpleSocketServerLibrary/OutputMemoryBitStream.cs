@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SimpleSocketServerLibrary
 {
-    class OutputMemoryBitStream
+    public class OutputMemoryBitStream
     {
         public BitArray buffer { get; private set; }
         public int bitHead { get; private set; }
@@ -48,7 +48,7 @@ namespace SimpleSocketServerLibrary
             else if (typeof(T) == typeof(float)) dataBytes = BitConverter.GetBytes(Convert.ToSingle(data));
             else if (typeof(T) == typeof(double)) dataBytes = BitConverter.GetBytes(Convert.ToDouble(data));
             else
-                throw new ArgumentException("OutputMemoryStream.Write parameter can be only primitive type except decimal");
+                throw new ArgumentException("OutputMemoryBitStream.WriteBits parameter can be only primitive type except decimal");
 
             var dataBits = new BitArray(dataBytes);
             for (int i = bitHead; i < nextBitHead; i++)

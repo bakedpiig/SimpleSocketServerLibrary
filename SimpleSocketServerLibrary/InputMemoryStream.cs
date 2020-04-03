@@ -123,7 +123,7 @@ namespace SimpleSocketServerLibrary
                 head += sizeof(double);
             }
             else
-                throw new ArgumentException("OutputMemoryStream.Write parameter can be only primitive type except decimal");
+                throw new ArgumentException("InputMemoryStream.Read parameter can be only primitive type except decimal");
         }
         public void Read(out string data)
         {
