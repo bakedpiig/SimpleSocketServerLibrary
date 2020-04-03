@@ -50,9 +50,11 @@ namespace SimpleSocketServerLibrary
             else
                 throw new ArgumentException("OutputMemoryBitStream.WriteBits parameter can be only primitive type except decimal");
 
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(dataBytes);
             var dataBits = new BitArray(dataBytes);
             for (int i = bitHead; i < nextBitHead; i++)
-                buffer[bitHead] = dataBits[i - bitHead];
+                buffer[i] = dataBits[i - bitHead];
             bitHead = nextBitHead;
         }
         public void WriteBits(string data)

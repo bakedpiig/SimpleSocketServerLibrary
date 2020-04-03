@@ -24,24 +24,68 @@ namespace SimpleSocketServerLibrary
             BitArray dataBits = new BitArray(length);
             for (int i = 0; i < length; i++)
                 dataBits[i] = buffer[bitHead + i];
-            byte[] dataBytes = new byte[length / 8 + ((length & 0x7) > 0 ? 1 : 0)];
+            byte[] dataBytes = new byte[length / 8 + (length % 8 > 0 ? 1 : 0)];
             dataBits.CopyTo(dataBytes, 0);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(dataBytes);
             bitHead += length;
 
-            if (typeof(T) == typeof(bool)) data = (T)(object)BitConverter.ToBoolean(dataBytes, 0);
-            else if (typeof(T) == typeof(char)) data = (T)(object)BitConverter.ToChar(dataBytes, 0);
-            else if (typeof(T) == typeof(byte)) data = (T)(object)dataBytes[0];
-            else if (typeof(T) == typeof(sbyte)) data = (T)(object)dataBytes[0];
-            else if (typeof(T) == typeof(short)) data = (T)(object)BitConverter.ToInt16(dataBytes, 0);
-            else if (typeof(T) == typeof(ushort)) data = (T)(object)BitConverter.ToUInt16(dataBytes, 0);
-            else if (typeof(T) == typeof(int)) data = (T)(object)BitConverter.ToInt32(dataBytes, 0);
-            else if (typeof(T) == typeof(uint)) data = (T)(object)BitConverter.ToUInt32(dataBytes, 0);
-            else if (typeof(T) == typeof(long)) data = (T)(object)BitConverter.ToInt64(dataBytes, 0);
-            else if (typeof(T) == typeof(ulong)) data = (T)(object)BitConverter.ToUInt64(dataBytes, 0);
-            else if (typeof(T) == typeof(float)) data = (T)(object)BitConverter.ToSingle(dataBytes, 0);
-            else if (typeof(T) == typeof(double)) data = (T)(object)BitConverter.ToDouble(dataBytes, 0);
+            if (typeof(T) == typeof(bool))
+                data = (T)(object)BitConverter.ToBoolean(dataBytes, 0);
+            else if (typeof(T) == typeof(char))
+                data = (T)(object)BitConverter.ToChar(dataBytes, 0);
+            else if (typeof(T) == typeof(byte))
+                data = (T)(object)dataBytes[0];
+            else if (typeof(T) == typeof(sbyte))
+                data = (T)(object)dataBytes[0];
+            else if (typeof(T) == typeof(short))
+            {
+                byte[] newArr = new byte[sizeof(short)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToInt16(newArr, 0);
+            }
+            else if (typeof(T) == typeof(ushort))
+            {
+                byte[] newArr = new byte[sizeof(ushort)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToUInt16(newArr, 0);
+            }
+            else if (typeof(T) == typeof(int))
+            {
+                byte[] newArr = new byte[sizeof(int)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToInt32(newArr, 0);
+            }
+            else if (typeof(T) == typeof(uint))
+            {
+                byte[] newArr = new byte[sizeof(uint)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToUInt32(newArr, 0);
+            }
+            else if (typeof(T) == typeof(long))
+            {
+                byte[] newArr = new byte[sizeof(long)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToInt64(newArr, 0);
+            }
+            else if (typeof(T) == typeof(ulong))
+            {
+                byte[] newArr = new byte[sizeof(ulong)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToUInt64(newArr, 0);
+            }
+            else if (typeof(T) == typeof(float))
+            {
+                byte[] newArr = new byte[sizeof(float)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToSingle(newArr, 0);
+            }
+            else if (typeof(T) == typeof(double))
+            {
+                byte[] newArr = new byte[sizeof(double)];
+                dataBytes.CopyTo(newArr, newArr.Length - dataBytes.Length);
+                data = (T)(object)BitConverter.ToDouble(newArr, 0);
+            }
             else
                 throw new ArgumentException("InputMemoryBitStream.ReadBits parameter can be only primitive type except decimal");
         }
